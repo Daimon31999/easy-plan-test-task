@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,800,800i,900i&display=swap);
+
+// colors
+$white: #fff;
+$light-gray: rgb(128, 128, 128);
+$text-color: #000;
+$header-green: #6ee7b7;
+$header-blue: #93c5fd;
+$body-yellow: #fef3c7;
+
+//standard font family
+$font-family: 'Source Sans Pro', sans-serif;
+
+//fonts
+$standard-font: normal 14px/20px $font-family;
+$small-font: normal 13px/20px $font-family;
+$title-font: bold 24px/36px $font-family;
+$subtitle-font: bold 20px/30px $font-family;
+
+$nav-links-font: bold 16px/24px $font-family;
+$nav-links-xs-font: bold 12px/20px $font-family;
+$standard-font-xs: normal 10px/14px $font-family;
+
+//paddings
+$small-padding: 10px;
+$standard-padding: 20px;
+
+//breakpoints
+$xs: 375px;

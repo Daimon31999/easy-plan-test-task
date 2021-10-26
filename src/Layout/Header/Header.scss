@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+
+#header-nav {
+  background-color: $header-green;
+  padding: $standard-padding;
+
+  & ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+
+    a.active {
+      text-decoration: underline;
+    }
+
+    a {
+      font: $nav-links-font;
+    }
+  }
+
+  @media only screen and (max-width: $xs) {
+    padding: $small-padding;
+
+    & ul a {
+      font: $nav-links-xs-font;
+    }
+  }
+}
