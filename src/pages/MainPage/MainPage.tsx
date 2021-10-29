@@ -1,19 +1,11 @@
 import { FC } from 'react';
-import { IIsFavPageProps } from '../../utils/interfaces';
-import BooksList from '../../components/BooksList/BooksList';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import CardsList from '../../components/CardsList/CardsList';
 import './MainPage.scss';
 
-const MainPage: FC<IIsFavPageProps> = ({ isFavPage }) => {
+const MainPage: FC = () => {
   return (
     <div className="main-page">
-      {!isFavPage && (
-        <div className="search-bar">
-          <SearchBar />
-        </div>
-      )}
-
-      <BooksList isFavPage={isFavPage} />
+      <CardsList />
     </div>
   );
 };

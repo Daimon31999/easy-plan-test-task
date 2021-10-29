@@ -1,11 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import booksReducer from '../features/books/booksSlice';
-import favoriteBooksReducer from '../features/books/favoriteBooksSlice';
+import cardsReducer from '../features/cards/cardsSlice';
 
 export const store = configureStore({
   reducer: {
-    books: booksReducer,
-    favoriteBooks: favoriteBooksReducer,
+    cards: cardsReducer,
   },
 });
 

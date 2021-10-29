@@ -1,0 +1,7 @@
+@import '../../styles/variables';
+
+.card {
+  background-color: $card-bg-color;
+  padding: $standard-padding;
+  border-radius: $small-padding;
+}
