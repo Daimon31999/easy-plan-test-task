@@ -21,7 +21,6 @@ const Card: FC<ICardProps> = ({ title, id }) => {
     dispatch(changeCard({ id, title: e.target.value }));
   };
 
-  // TODO: move it to hook or helper func
   const handleCardClick = () => {
     if (clickTimeout !== null) {
       // double click executes
@@ -30,8 +29,6 @@ const Card: FC<ICardProps> = ({ title, id }) => {
 
       setClickTimeout(null);
     } else {
-      // single click here
-
       setClickTimeout(
         setTimeout(() => {
           // first click executes
