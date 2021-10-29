@@ -1,7 +1,21 @@
 @import '../../styles/variables';
 
-.card {
-  background-color: $card-bg-color;
-  padding: $standard-padding;
-  border-radius: $small-padding;
+.card-wrapper {
+  position: relative;
+
+  .card {
+    background-color: $card-bg-color;
+    padding: 8px 20px 40px 20px;
+    border-radius: $small-padding;
+    z-index: 1;
+    width: 200px;
+  }
+
+  input.ant-input {
+    z-index: 2;
+    position: absolute;
+    width: 160px;
+    bottom: 10px;
+    left: 20px;
+  }
 }

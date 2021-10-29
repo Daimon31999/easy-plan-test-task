@@ -1,7 +1,11 @@
 import { FC, ChangeEvent, useState } from 'react';
 import { Input } from 'antd';
 import { useAppDispatch } from '../../app/hooks';
-import { changeCard, moveCard } from '../../features/cards/cardsSlice';
+import {
+  changeCard,
+  deleteCard,
+  moveCard,
+} from '../../features/cards/cardsSlice';
 import './Card.scss';
 
 interface ICardProps {
@@ -43,9 +47,19 @@ const Card: FC<ICardProps> = ({ title, id }) => {
     }
   };
 
+  const handleRightClick = () => {
+    dispatch(deleteCard(id));
+  };
+
   return (
-    <div className="card" onClick={() => handleCardClick()}>
-      <h1>{title}</h1>
+    <div className="card-wrapper">
+      <div
+        className="card"
+        onClick={() => handleCardClick()}
+        onContextMenu={handleRightClick}
+      >
+        <h1>{title}</h1>
+      </div>
       <Input onChange={handleChange} />
     </div>
   );

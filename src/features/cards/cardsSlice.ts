@@ -20,6 +20,13 @@ export const cardsSlice = createSlice({
   name: 'cardsSlice',
   initialState,
   reducers: {
+    deleteCard(state, action: PayloadAction<string>) {
+      const id = action.payload;
+      const index = getCardIndex(state, id);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
+    },
     changeCard(state, action: PayloadAction<ICardModel>) {
       const { id, title: newTitle } = action.payload;
       const index = getCardIndex(state, id);
@@ -57,6 +64,6 @@ export const cardsSlice = createSlice({
 
 export const selectCards = (state: RootState) => state.cards;
 
-export const { changeCard, moveCard } = cardsSlice.actions;
+export const { changeCard, moveCard, deleteCard } = cardsSlice.actions;
 
 export default cardsSlice.reducer;
