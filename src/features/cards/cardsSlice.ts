@@ -8,6 +8,7 @@ import {
 } from '../../utils/interfaces';
 import { CARDS_COUNT } from '../../utils/config';
 import { getCardIndex } from '../../utils/helpers';
+import { WritableDraft } from 'immer/dist/internal';
 
 const initialState: CardsType = Array(CARDS_COUNT)
   .fill(null)
@@ -15,6 +16,16 @@ const initialState: CardsType = Array(CARDS_COUNT)
     id: uuid(),
     title: `card ${i}`,
   }));
+
+const swap = (
+  array: WritableDraft<ICardModel>[],
+  aIndex: number,
+  bIndex: number
+): void => {
+  const b = array[aIndex];
+  array[aIndex] = array[bIndex];
+  array[bIndex] = b;
+};
 
 export const cardsSlice = createSlice({
   name: 'cardsSlice',
@@ -46,25 +57,30 @@ export const cardsSlice = createSlice({
     moveCard(state, action: PayloadAction<IMoveCardPayload>) {
       const { id, position } = action.payload;
       const index = getCardIndex(state, id);
+      const lastIndex = state.length - 1;
+
+      if (
+        (index === 0 && position === 'move-up') ||
+        (index === lastIndex && position === 'move-down')
+      ) {
+        // swap last and first items
+        swap(state, 0, lastIndex);
+
+        return state;
+      }
+
+      const computedState = state.filter((card) => card.id !== id);
       const targetCard = state[index];
 
-      state = state.filter((card) => card.id !== id);
-
       if (position === 'move-up') {
-        const computedIndex = index - 1;
-
-        if (computedIndex === -1) {
-          return;
-        }
-
-        state.splice(index - 1, 0, targetCard);
+        computedState.splice(index - 1, 0, targetCard);
       }
 
       if (position === 'move-down') {
-        state.splice(index + 1, 0, targetCard);
+        computedState.splice(index + 1, 0, targetCard);
       }
 
-      return state;
+      return computedState;
     },
   },
 });
