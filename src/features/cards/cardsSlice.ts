@@ -27,6 +27,7 @@ export const cardsSlice = createSlice({
         state.splice(index, 1);
       }
     },
+
     changeCard(state, action: PayloadAction<ICardModel>) {
       const { id, title: newTitle } = action.payload;
       const index = getCardIndex(state, id);
@@ -45,16 +46,22 @@ export const cardsSlice = createSlice({
     moveCard(state, action: PayloadAction<IMoveCardPayload>) {
       const { id, position } = action.payload;
       const index = getCardIndex(state, id);
-
       const targetCard = state[index];
+
       state = state.filter((card) => card.id !== id);
 
       if (position === 'move-up') {
-        state.unshift(targetCard);
+        const computedIndex = index - 1;
+
+        if (computedIndex === -1) {
+          return;
+        }
+
+        state.splice(index - 1, 0, targetCard);
       }
 
       if (position === 'move-down') {
-        state.push(targetCard);
+        state.splice(index + 1, 0, targetCard);
       }
 
       return state;
